@@ -103,8 +103,10 @@ When the agent gets stuck on the same problem 3+ times, it increases temperature
 python
 
 if stuck_on_same_problem:
+
     temperature = 1.0  #More creative
 else:
+
     temperature = 0.7  #Normal
 
 ### Smart Function Calling
@@ -189,16 +191,21 @@ bash
 ## 📝 Architecture
 
 User Input
+
     ↓
 agent.py (Orchestrator)
+   
     ├→ prompts.py (Instructions)
     ├→ state.py (Attempt tracking)   
     ↓
 OpenAI API (GPT-4) 
+    
     ↓
 functions.py (Tools) 
+   
     ↓
 database.py (Data storage)
+    
     ↓
 Response to User
 
@@ -206,22 +213,28 @@ Response to User
 ## ⚠️ Important Notes
 
 This is for learning - Uses in-memory database that resets when you restart
+
 API costs - Uses OpenAI API (costs ~$0.01-0.05 per conversation with gpt-4o-mini)
+
 Not production-ready - No authentication, persistence, or error recovery for production use
 
 ## 🤝 Contributing
 This is an educational project! Feedback and improvements welcome:
 
 Open an issue for bugs or suggestions
+
 Share what you learned
+
 Build your own version and tell me about it!
 
 ## 📄 License
 MIT License - see LICENSE file for details.
+
 Free to use, modify, and learn from!
 
 ## 🙏 Acknowledgments
 Built as a learning project to understand how LLMs work under the hood.
+
 Inspired by curiosity about what happens behind the "Send" button in ChatGPT.
 
 ## Questions or feedback?
