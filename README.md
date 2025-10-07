@@ -31,14 +31,14 @@ bash
 
 pip install -r requirements.txt
 
-3. Set up your API key
+3. **Set up your API key**
 
 - Copy .env.example to a new file called .env
 - Open .env and replace your-api-key-here with your actual OpenAI API key
 - Save the file
 
 
-4. Run the agent
+4. **Run the agent**
 
 bash   
 
@@ -47,32 +47,51 @@ python agent.py
 
 ## 💬 Try These Scenarios
 The agent comes pre-loaded with 10 sample orders. Try these:
+
 1. Cancel a Processing Order (Immediate Refund)
-YOU: I want to cancel order 33333
+
+You: I want to cancel order 33333
 The agent will check the status and process an immediate refund since it hasn't shipped yet.
+
 2. Refund a Shipped Order (Return Process Required)
-YOU: I need a refund for order 12345, the item arrived damaged
+You: I need a refund for order 12345, the item arrived damaged
 The agent will initiate a return process and provide a shipping label.
+
 3. Simulate Warehouse Operations
-YOU: /admin receive_return RET-12345 good
+
+You: /admin receive_return RET-12345 good
 This simulates the warehouse receiving the returned item and triggers the refund.
+
 4. Check Return Status
-YOU: What's the status of return RET-12345?
-Available Test Orders
+You: What's the status of return RET-12345?
+
+**Available Test Orders**
+
 Try these order IDs: 12345, 67890, 11111, 22222, 33333, 44444, 55555, 66666, 77777, 88888
+
 Each has different statuses (processing, shipped, delivered) to test different scenarios.
 
 ## 📚 How It Works
+
 The agent consists of 5 key components:
 1. agent.py - The Orchestrator
+
 Coordinates everything - manages conversation flow, calls OpenAI API, executes functions, tracks state.
+
 2. prompts.py - The Instruction Manual
+
 Defines the agent's personality, business rules, and guidelines through natural language.
+
 3. functions.py - The Tools
+
 The actual actions the agent can take: checking orders, processing refunds, handling returns.
+
 4. database.py - The Memory
+
 In-memory storage for orders, returns, and refunds. All functions read/write here.
+
 5. state.py - The Attempt Tracker
+
 Monitors if the agent is stuck on a problem and adjusts temperature accordingly.
 
 ## 🧠 Key Concepts Demonstrated
