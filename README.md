@@ -28,13 +28,14 @@ Built to understand how ChatGPT and similar AI systems actually work under the h
 2. **Install Python packages**
 
 bash
-   pip install -r requirements.txt
+
+pip install -r requirements.txt
 
 3. Set up your API key
 
-Copy .env.example to a new file called .env
-Open .env and replace your-api-key-here with your actual OpenAI API key
-Save the file
+- Copy .env.example to a new file called .env
+- Open .env and replace your-api-key-here with your actual OpenAI API key
+- Save the file
 
 
 4. Run the agent
