@@ -99,7 +99,10 @@ Monitors if the agent is stuck on a problem and adjusts temperature accordingly.
 ### Dynamic Temperature Adjustment
 
 When the agent gets stuck on the same problem 3+ times, it increases temperature for more creative solutions:
-pythonif stuck_on_same_problem:
+
+python
+
+if stuck_on_same_problem:
     temperature = 1.0  # More creative
 else:
     temperature = 0.7  # Normal
@@ -109,6 +112,7 @@ else:
 The initiate_refund() function automatically determines the right approach:
 
 Processing orders → Cancel and refund immediately
+
 Shipped orders → Initiate return process first
 
 ### Granular State Tracking
@@ -116,65 +120,96 @@ Shipped orders → Initiate return process first
 Tracks attempts by problem_type:order_id to prevent false "stuck" detection:
 
 refund_issue:12345 (3 attempts) → Stuck!
+
 refund_issue:67890 (1 attempt) → Fine, different order
 
 ### Business Rules in Code
 
-The AI is smart about language, but YOU define the business logic:
+The AI is smart about language, but you define the business logic:
 
 Shipped orders require returns before refunds
+
 Refunds over $500 need supervisor approval
+
 Return process takes 6-12 business days
 
 ## 🎓 What I Learned Building This
 
 Prompts are 20% of the solution - you also need functions, state, and orchestration
+
 Function calling isn't magic - YOU define what happens in your code
+
 State management is harder than expected - conversation history ≠ problem-solving state
+
 The AI part is actually easy - orchestration is the hard part
+
 Temperature is math (logits / temperature), not just a "creativity dial"
 
 ## 🛠️ Admin Commands
 
 For testing, you can simulate backend operations:
+
 ### Mark return as received (good condition)
+
 bash
+
 /admin receive_return RET-12345 good
 
 ### Mark return as received (damaged)
+
 bash
+
 /admin receive_return RET-12345 damaged_beyond_acceptable
 
 ### View all orders
+
 bash
+
 /admin show_orders
 
 ### View all returns
+
 bash
+
 /admin show_returns
 
 ### View all refunds
+
 bash
+
 /admin show_refunds
 
 ### Reset database to initial state
+
 bash
+
 /admin reset_database
 
 
 ## 📝 Architecture
 
 User Input
+  
     ↓
+
 agent.py (Orchestrator)
+   
     ├→ prompts.py (Instructions)
+    
     ├→ state.py (Attempt tracking)
+    
     ↓
+
 OpenAI API (GPT-4)
+   
     ↓
+
 functions.py (Tools)
+    
     ↓
+
 database.py (Data storage)
+    
     ↓
 Response to User
 
