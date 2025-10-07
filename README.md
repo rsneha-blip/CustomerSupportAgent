@@ -103,9 +103,9 @@ When the agent gets stuck on the same problem 3+ times, it increases temperature
 python
 
 if stuck_on_same_problem:
-    temperature = 1.0  # More creative
+    temperature = 1.0  #More creative
 else:
-    temperature = 0.7  # Normal
+    temperature = 0.7  #Normal
 
 ### Smart Function Calling
 
@@ -137,7 +137,7 @@ Return process takes 6-12 business days
 
 Prompts are 20% of the solution - you also need functions, state, and orchestration
 
-Function calling isn't magic - YOU define what happens in your code
+Function calling isn't magic - You define what happens in your code
 
 State management is harder than expected - conversation history ≠ problem-solving state
 
@@ -189,27 +189,16 @@ bash
 ## 📝 Architecture
 
 User Input
-  
     ↓
-
 agent.py (Orchestrator)
-   
     ├→ prompts.py (Instructions)
-    
-    ├→ state.py (Attempt tracking)
-    
+    ├→ state.py (Attempt tracking)   
     ↓
-
-OpenAI API (GPT-4)
-   
+OpenAI API (GPT-4) 
     ↓
-
-functions.py (Tools)
-    
+functions.py (Tools) 
     ↓
-
 database.py (Data storage)
-    
     ↓
 Response to User
 
