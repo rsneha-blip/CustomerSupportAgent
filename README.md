@@ -51,18 +51,23 @@ The agent comes pre-loaded with 10 sample orders. Try these:
 1. Cancel a Processing Order (Immediate Refund)
 
 You: I want to cancel order 33333
+
 The agent will check the status and process an immediate refund since it hasn't shipped yet.
 
 2. Refund a Shipped Order (Return Process Required)
+
 You: I need a refund for order 12345, the item arrived damaged
+
 The agent will initiate a return process and provide a shipping label.
 
 3. Simulate Warehouse Operations
 
 You: /admin receive_return RET-12345 good
+
 This simulates the warehouse receiving the returned item and triggers the refund.
 
 4. Check Return Status
+
 You: What's the status of return RET-12345?
 
 **Available Test Orders**
